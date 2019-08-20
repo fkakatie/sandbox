@@ -4,10 +4,22 @@ $("#wiki").on("click", function() {
         url: "https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&format=json&origin=*",
         method: "GET"
     }).then(function(response) {
-        var data = response.query.pages[Object.keys(response.query.pages)[0]];
+        var data = response.query.pages[Object.keys(response.query.pages)[0]].title;
         console.log(data);
-        // var key = data[Object.keys(data)[0]];
-        // console.log(key);
     });
     
+})
+
+$("#quote").on("click", function() {
+
+    $.ajax({
+        url: "https://api.quotable.io/random",
+        method: "GET"
+    }).then(function(response) {
+        var quote = response.content;
+        console.log(quote);
+        var author = response.author;
+        console.log("— " + author);
+    })
+
 })
